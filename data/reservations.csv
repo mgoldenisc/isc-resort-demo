@@ -1,4 +1,4 @@
-res_no,room_no,guest_id,rate,CHECK_IN_DATE,CHECK_OUT_DATE,check_in_time,check_out_time
+res_no,room_no,guest_id,rate,check_in_date,check_out_date,check_in_time,check_out_time
 56408,1,69108,355.17,2023-07-04,2023-07-08,15:00:00,11:00:00
 42954,2,88388,359.81,2023-10-06,2023-10-08,15:00:00,11:00:00
 47629,3,69564,323.26,2023-09-11,2023-09-12,15:00:00,11:00:00
