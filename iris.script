@@ -1,0 +1,16 @@
+zn "%SYS"
+do ##class(Security.Users).UnExpireUserPasswords("*")
+zn "USER"
+do $SYSTEM.OBJ.Load("/opt/irisbuild/src/Guests.cls","ck")
+do ##class(%Global).Import($NAMESPACE,"*","/opt/irisbuild/data/guests.gof",7)
+set gw = ##class(%SQLConnection).%New()
+set gw.Name="mysql"
+set gw.isJDBC=1
+set gw.URL="jdbc:mysql://mysql:3306/mysql?useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false"
+set gw.Usr="root"
+set gw.pwd="SYS"
+set gw.classpath="/opt/irisbuild/data/mysql-connector-j-8.0.33.jar"
+set gw.driver="com.mysql.cj.jdbc.Driver"
+do gw.%Save()
+
+halt

@@ -1,0 +1,9 @@
+FROM mysql:8.0.33
+WORKDIR /opt/mysqlbuild/
+
+ENV MYSQL_ROOT_PASSWORD=SYS
+
+EXPOSE 3306
+
+COPY data/reservations.csv /var/lib/mysql-files/reservations.csv
+COPY mysqlsetup.sh /docker-entrypoint-initdb.d/mysqlsetup.sh

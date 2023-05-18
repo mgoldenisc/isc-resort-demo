@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  iris:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: --check-caps false --ISCAgent false
+    restart: always
+    hostname: iris
+    ports:
+      - 41773:1972
+      - 42773:52773
+
+  mysql:
+    build: 
+      context: .
+      dockerfile: Dockerfile-MySQL
+    restart: always
+    hostname: mysql
+  
+  jupyter:
+      build:
+        context: .
+        dockerfile: Dockerfile-Jupyter
+      restart: always
+      hostname: jupyter
+      environment:
+        ISC_FT_HOSTNAME: iris
+        ISC_FT_PORT: 1972
+        ISC_FT_NAMESPACE: USER
+        ISC_FT_USER: _SYSTEM
+        ISC_FT_PASSWORD: SYS
+      ports:
+        - 8888:8888
