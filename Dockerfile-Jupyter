@@ -3,9 +3,14 @@ FROM jupyter/base-notebook
 RUN wget --continue https://github.com/intersystems-community/iris-driver-distribution/raw/main/DB-API/intersystems_irispython-3.2.0-py3-none-any.whl && \
     pip install intersystems_irispython-3.2.0-py3-none-any.whl && \
     rm intersystems_irispython-3.2.0-py3-none-any.whl && \
-    pip install tabulate 
+    pip install tabulate
 
 COPY src/python/demo* "${HOME}"
+ARG user=$USER
+USER root
+RUN mkdir /opt/demodata/
+USER ${user}
+COPY data/rooms.csv /opt/demodata/rooms.csv
 
 # run without password
 CMD start.sh jupyter lab --LabApp.token=''
